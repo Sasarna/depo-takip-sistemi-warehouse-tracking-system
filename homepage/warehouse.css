@@ -1,0 +1,134 @@
+@import url(/reset.css);
+
+/* Google Fonts - Poppins */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+.warehouse-box-two-one, 
+.container, .circular-progress {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.container-box-warehouse {
+    display: flex;
+    flex-direction: column;
+    height: 90%;
+    width: 95%;
+    margin: auto;
+}
+
+.warehouse-box-one {
+    padding: 1%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    flex-direction: column;
+    border-bottom: 1px gray solid;
+}
+
+.warehouse-box-two {
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.5%;
+}
+
+.warehouse-box-two-one {
+    flex-direction: column;
+}
+
+.warehouse-box-two-one > h4 {
+    font-weight: bold;
+    text-decoration: underline;
+    height: auto;
+    width: 90%;
+}
+
+.warehouse-box-two-one > p {
+    margin-top: 40px;
+    width: 80%;
+    font-size: large;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.warehouse-box-two-two {
+    display: flex;
+    flex-direction: row; 
+}
+
+.warehouse-box-two-two-one {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 1%;
+    padding-right: 2%;
+}
+
+.warehouse-box-two-two-one > span {
+    text-decoration: underline;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+.warehouse-box-two-two-two > span {
+    text-decoration: underline;
+    font-size: large;
+    font-weight: bold;
+}
+
+/* 
+.warehouse-box-two-two-two {
+    border: 2px dashed pink;
+} */
+
+.container {
+    /* width: 420px; */
+    padding: 50px 50px;
+    border-radius: 8px;
+    /* background: #fff; */
+    row-gap: 30px;
+    flex-direction: column;
+}
+
+.circular-progress {
+    position: relative;
+    height: 250px;
+    width: 250px;
+    border-radius: 50%;
+    background: conic-gradient(#7d2ae8 3.6deg, #ededed 0deg);
+}
+
+.circular-progress::before {
+    content: "";
+    position: absolute;
+    height: 210px;
+    width: 210px;
+    border-radius: 50%;
+    background-color: #fff;
+}
+
+.progress-value {
+    position: relative;
+    font-size: 40px;
+    font-weight: 600;
+    color: #7d2ae8;
+    margin-top: 67%;
+}
+
+.text {
+    font-size: 30px;
+    font-weight: 500;
+    color: #606060;
+}
+
+.warehouse-box-two-two-two {
+    padding-bottom: 50px;
+}
+
+
+.iframe-graph {
+    margin-top: 40%;
+}

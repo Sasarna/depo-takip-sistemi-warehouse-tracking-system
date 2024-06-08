@@ -1,0 +1,98 @@
+@import url(/reset.css);
+
+/*
+    <div class="open-modal-regis-container-box">
+        <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>   
+    </div>
+*/
+
+.open-modal-regis-container-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.open-modal-regis-container-box {
+    flex-direction: column;
+    position: fixed;
+    width: 80%;
+    height: 90%;
+    z-index: 20;
+    transform: 250ms;
+    background-color: rgb(255, 255, 255);
+    margin: auto auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% , -50%);
+    border-radius: 1.2rem;
+    -webkit-box-shadow: inset 0px 0px 300px -25px rgb(255, 255, 255);
+    -moz-box-shadow: inset 0px 0px 300px -25px rgb(255, 255, 255);
+    box-shadow: inset 0px 0px 300px -25px rgb(255, 255, 255);
+    border: 1px solid rgba(175, 206, 216, 0.63);
+    display: none;
+}
+
+.open-modal-box-container {
+    display: flex;
+    border: 1px solid red;
+    height: 85%;
+    width: 95%;
+    margin: auto;
+
+}
+.modal-backdrop {
+    background-color: white;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 0%;
+   /* Arka planı hafifçe saydam koyu bir renk yapar */
+    z-index: 9999; /* Diğer elementlerin üzerinde olmasını sağlar */
+}
+
+.modal-box {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff; /* Modal kutunun arka plan rengi */
+    padding: 20px;
+    border-radius: 8px;
+    z-index: 10000; /* Modalın backdrop'tan üstünde olmasını sağlar */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Modal kutusuna hafif bir gölge ekler */
+    max-width: 80%; /* Modalın maksimum genişliği */
+    max-height: 93%;
+}
+
+.modal-header {
+    display: flex;
+    height: auto;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc; /* Başlık ile içerik arasında ince bir çizgi oluşturur */
+}
+
+.modal-header h2 {
+    width: auto;
+    height: auto;
+    margin: auto;
+    margin-top: -5px;
+}
+
+.modal-close-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100px;
+    height: 50px;
+    font-weight: bold;
+    border-radius: 10px;
+    font-weight: 1000;
+    font-size: 40px;
+}
+
+.modal-close-btn:focus {
+    outline: none;
+}
+

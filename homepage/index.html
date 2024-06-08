@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/homepage/form/form.css">
+    <link rel="stylesheet" href="/homepage/newRecords/newRecords.css">
+    <link rel="stylesheet" href="/homepage/logistics/logistics.css">
+    <link rel="stylesheet" href="/homepage/warehouse.css">
+    <link rel="stylesheet" href="/homepage/newRecords/registrationDetail.css">
+    <link rel="stylesheet" href="/homepage/warehouseAnimet.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+    <title>Nokta Depoları Takip Sistemi</title>
+
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=3f44a7d3-b99b-491e-a6dd-e073a26cfaf7&lang=en_US" type="text/javascript"></script>
+</head>
+
+<body translate="no">
+    <div id="container">
+        <header>
+            <div id="header-box-iframe">
+                <iframe src="/headerBox/headerBox.html" frameborder="0" id="header-iframe"></iframe>
+                <nav>
+                    <div id="nav-bar">
+                        <div class="nav-bar-btn" id="hompage-btn">
+                            Anasayfa
+                        </div>
+                        <div class="nav-bar-btn" id="records-btn">
+                            Kayıtlar
+                        </div>
+                        <div class="nav-bar-btn" id="new-record-btn">
+                            Yeni Kayıt
+                        </div>
+                        <div class="nav-bar-btn" id="compaines-btn">
+                            Firmalar
+                        </div>
+                        <div class="nav-bar-btn" id="warehouse-btn">
+                            Depolar
+                        </div>
+                        <button id="off-header">
+                            <i class="fa-solid fa-arrow-up" style="color: #ffffff;"></i>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <div id="main-screen">
+                <div class="screen" id="hompage-screen">
+                    <h3>Anasayfa</h3>
+                    <div id="progress-bar-container-box">
+                        <div id="progress-bar-container-box-one">
+                            <div id="progress-bar-container-box-one-h4">
+                                <h4>Tüm Depoların Ortalama Doluluk Oranı</h4>
+                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                <i class="fa-solid fa-angle-up fa-rotate-90 fa-2xl" style="color: #000000;"></i>
+                            </div>
+                            <p><strong>&#9432;</strong> Bu yüzdelik oran tüm depoların toplam ağırlını yüzdelik oran ile
+                                göstermektedir. Ve toplam kapasite hakkında bilgi sağlamaktadır.
+                                <strong>&#9432;</strong>
+                            </p>
+                        </div>
+                        <div id="progress-bar-container-box-two">
+                            <div class="container">
+                                <div class="circular-progress" id="circular-progress-id-hompage">
+                                    <span class="progress-value" id="progress-value-id-hompage">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div id="map-container-box">
+                        <p><strong>&#9432;</strong>Depo'nun mevcut konumu aşağıda ve enlem: "37°761470", boylam:
+                            "31°284043" kordinatlarında bulunmaktadır.<strong>&#9432;</strong></p>
+                        <div id="map" style="width: 100%; height: 500px; border-radius: 15px"></div>
+                    </div>
+                </div>
+                <div class="screen" id="records-screen">
+                    <h3>Kayıtlar</h3>
+                    <div id="card-body">
+                        <form name="new-record-form">
+                            <input type="text" id="record-search" placeholder="Kayıt Arayınız" autocomplete="off">
+                            &nbsp;
+                            <button id="new-record-form-information" type="button"><i
+                                    class="fa-solid fa-circle-info fa-" style="color: #606060;"></i></button>
+                            <div id="new-record-form-information-box">
+                                <h5>Depo Numarası için:</h5>
+                                <ul>
+                                    <li>depo numarası : _</li>
+                                </ul>
+
+                                <h5>Kg için:</h5>
+                                <ul>
+                                    <li>_ kg</li>
+                                </ul>
+
+                                <h5>Giriş Saati için:</h5>
+                                <ul>
+                                    <li>_ _ : _ _</li>
+                                </ul>
+
+                                <h5>Giriş Tarihi için:</h5>
+                                <ul>
+                                    <li>2023-06-08</li>
+                                </ul>
+                            </div>
+                        </form>
+                        <ul class="list-groups">
+                            <!-- <li class="list-group-items">
+                                <div class="records-qualifications" data-record-data='{"productName": "Ürün Adı", "productTour": "Ürün Turu", "warehouseNumber": "Depo Numarası", "productStatus": "Ürün Durumu", "logisticsCompany": "Lojistik Firması", "weight": "Ürün Ağırlığı", "companyName": "Firma Adı", "entrytime": "Giriş Saati", "entryDate": "Giriş Tarihi"}'>
+                                    <div class="records-qualifications-box-box" id="records-qualifications-box-box-one">
+                                        <div class="records-qualifications-boxs"><span id="productName-span">Ürün Adı : demir çelik </span></div>
+                                        <div class="records-qualifications-boxs"><span id="warehouseNumber-span">Depo Numarası :4 </span></div>
+                                    </div>
+                                    <div class="records-qualifications-box-box" id="records-qualifications-box-box-two">
+                                        <div class="records-qualifications-boxs"><span id="productStatus-span">Ürün Durumu : hasarsız </span></div>
+                                        <div class="records-qualifications-boxs"><span id="logisticsCompany-span">Lojistik Firması : hun lojistik</span></div>
+                                    </div>
+                                    <div class="records-qualifications-box-box" id="records-qualifications-box-box-three">
+                                        <div class="records-qualifications-boxs"><span id="weight-span">Ürün Ağırlığı : 18kg</span></div>
+                                        <div class="records-qualifications-boxs"><span id="companyName-span">Firma Adı : yazıcılar</span></div>
+                                    </div>
+                                    <div class="records-qualifications-box-box" id="records-qualifications-box-box-date-time">
+                                        <div class="records-qualifications-boxs" id="date-records-time"><span id="entrytime-span">14:25</span></div>
+                                        <div class="records-qualifications-boxs" id="date-records-time"><span id="entryDate-span">01-25-2021</span></div>
+                                    </div>
+                                </div>
+                            </li> -->
+                        </ul>
+                    </div>
+                    <!-- <div class="warehouse-box-container" id="warehouse-box-container-screen-one">
+                        <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                        
+                    </div> -->
+                    <div class="open-modal-regis-container-box">
+                        <i class="fa-solid fa-xmark" id="xmark-off x-off-modal" style="color: #000000;"></i>
+                        <div class="open-modal-box-container">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="screen" id="new-records-screen">
+                    <h3>Yeni Kayıt Ekle</h3>
+                    <div class="login">
+                        <div class="login-screen">
+                            <form id="warehouse-Tracking-Form" class="login-form">
+                                <div class="control-group">
+                                    <label for="product-name">Depolanan Ürün Adı</label>
+                                    <input type="text" id="product-name" name="product-name" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="product-tour">Depolanan Ürün Türü</label>
+                                    <input type="text" id="product-tour" name="product-tour" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="entrytime">Depoya Giriş Saati</label>
+                                    <input type="time" id="entrytime" name="entrytime" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="warehouse-number">Depo Numarası</label>
+                                    <input type="number" id="warehouse-number" name="warehouse-number" autocomplete="off" min="1" max="6"
+                                        required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="company-name">Firma Adı</label>
+                                    <input type="text" id="company-name" name="company-name" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="logistics-company">Lojistik Firması</label>
+                                    <input type="text" id="logistics-company" name="logistics-company" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="weight">Gelen Ürünün Ağırlığı (kg)</label>
+                                    <input type="number" id="weight" name="weight" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="entry-date">Giriş Tarihi</label>
+                                    <input type="date" id="entry-date" name="entry-date" autocomplete="off" required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="stayduration">Kalma Süresi</label>
+                                    <input type="text" id="stayduration" name="stayduration" autocomplete="off" placeholder="Örn: 3 gün"
+                                        required>
+                                </div>
+                                <div class="control-group">
+                                    <label for="product-status">Ürün Durumu</label>
+                                    <select id="product-status" name="product-status" autocomplete="off" required>
+                                        <option value="Hasarsız">Hasarsız</option>
+                                        <option value="Hasarlı">Hasarlı</option>
+                                        <option value="Kısmen Hasarlı">Kısmen Hasarlı</option>
+                                    </select>
+                                </div>
+                                <div class="control-group">
+                                    <label for="additional-notes">Ek Notlar</label><br>
+                                    <textarea id="additional-notes" name="additional-notes" rows="4" placeholder="Ek bilgilerinizi buraya yazabilirsiniz..." autocomplete="off"></textarea>
+                                </div>
+                                <button type="submit" class="submit-btn">Yeni Kayıt Ekle</button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- <div id="notification">
+                        Yeni Kayıt Eklendi!
+                    </div> -->
+                </div>
+                <div class="screen" id="compaines-screen">
+                    <h3 class="company-title">Firmalar</h3>
+                    <div id="compaines-screen-container-box">
+                        <div class="compaines-screen" id="compaines-name-screen">
+                            <!-- <span class="company-title">Firmalar</span> -->
+                            <!-- <div class="compaines-name-boxs" id="compaines-name-boxs-normal">
+                                Reverse
+                            </div> -->
+                        </div>
+                        <div class="compaines-screen" id="compaines-logistics-name-screen">
+                            <!-- <span class="company-title">Lojistik Firması</span> -->
+                            <!-- <div class="compaines-name-boxs" id="compaines-name-boxs-logistics">
+                                Hun
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="screen" id="warehouse-screen">
+                    <h3>Depolar</h3>
+                    <div class="warehouse-columns" id="warehouse-one">
+                        <div class="warehouse-box" id="warehouse-box-container-btn-one">
+                            <h3>1. Numaralı Depo</h3>
+                        </div>
+                        <div class="warehouse-box" id="warehouse-box-container-btn-two">
+                            <h3>2. Numaralı Depo</h3>
+                        </div>
+                    </div>
+                    <div class="warehouse-columns" id="warehouse-two">
+                        <div class="warehouse-box" id="warehouse-box-container-btn-three">
+                            <h3>3. Numaralı Depo</h3>
+                        </div>
+                        <div class="warehouse-box" id="warehouse-box-container-btn-four">
+                            <h3>4. Numaralı Depo</h3>
+                        </div>
+                    </div>
+                    <div class="warehouse-columns" id="warehouse-three">
+                        <div class="warehouse-box" id="warehouse-box-container-btn-five">
+                            <h3>5. Numaralı Depo</h3>
+                        </div>
+                        <div class="warehouse-box" id="warehouse-box-container-btn-six">
+                            <h3>6. Numaralı Depo</h3>
+                        </div>
+                    </div>
+                    <div id="warehouse-boxs-screnns">
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-one">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 1</p>
+                                                <p><strong>Kiralandığı Firma :</strong> BİM A.Ş.</p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Güney Bağlantı Depo</p>
+                                                <p><strong>Standartlar : ISO</strong> <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"1" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p> Güney Bağlantı Depo, şirketin ana deposudur ve genellikle hızlı tüketilen ürünlerin stoklandığı bir depodur. Bu depo, perakende mağazalarına sürekli tedarik sağlamak için stratejik bir konumda yer alır. Günlük depo operasyonları, tedarik zinciri yönetimi ve envanter kontrolü bu depoda titizlikle izlenir. Depo içindeki ürünlerin alım satım trendleri, talep tahminleri ve sevkiyat planlaması burada yoğun bir şekilde takip edilir.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id">
+                                                    <span class="progress-value" id="progress-value-id">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span>Depo Sirkülasyon Grafiği</span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-two">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 2</p>
+                                                <p><strong>Kiralandığı Firma :</strong> Procter & Gamble</p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Zincir Depo</p>
+                                                <p><strong>Standartlar :</strong> ISO <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"2" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p>Zincir Depo, genellikle sezonluk ürünlerin ve kampanya dönemlerinde talebin yoğun olduğu ürünlerin stoklandığı bir depodur. Depo, lojistik ağın güney bölgelerine hızlı sevkiyat yapabilmesi için stratejik olarak konumlandırılmıştır. Burada, depo içindeki ürünlerin depolama düzeni, raf düzeni ve stok seviyeleri dikkatle yönetilir. Zincir Depo, müşteri taleplerine hızlı yanıt verebilmek ve optimum stok yönetimi sağlamak için teknolojik depo takip sistemleriyle entegre edilmiştir.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id-two">
+                                                    <span class="progress-value" id="progress-value-id-two">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span>Depo Sirkülasyon Grafiği</span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-three">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 3</p>
+                                                <p><strong> Kiralandığı Firma :</strong> Philip Morris A.Ş.</p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Aks Depo</p>
+                                                <p><strong>Standartlar :</strong> ISO <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"3" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p>Aks Depo, şirketin merkezi konumunda bulunan ve diğer depolar arasında koordinasyonu sağlayan bir depodur. Bu depo, ürünlerin dağıtım merkezi olarak işlev görür ve lojistik operasyonların merkezi noktasıdır. Aks Depo, gelen ve giden ürünlerin depolanması, sevkiyat planlaması ve envanter yönetimi gibi kritik operasyonları gerçekleştirir. Ayrıca, diğer depolar arasında mal transferleri ve lojistik süreçlerin optimizasyonu bu depo tarafından koordine edilir.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id-three">
+                                                    <span class="progress-value" id="progress-value-id-three">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span><strong><u>Depo Sirkülasyon Grafiği</u></strong></span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-four">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 4</p>
+                                                <p><strong>Kiralandığı Firma :</strong> Adidas</p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Köprü Depo</p>
+                                                <p><strong>Standartlar :</strong> ISO <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"4" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p> Köprü Depo, şirketin doğu bölgelerine yönelik lojistik ihtiyaçlarını karşılayan bir depodur. Bu depo, doğu illerine hızlı ve etkili bir şekilde ürün tedariki sağlamak için stratejik bir konumda yer alır. Köprü Depo, depo içindeki ürünlerin depolama koşulları, sevkiyat planlaması ve dağıtım rotalarının belirlenmesi gibi operasyonları başarıyla yönetir.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id-four">
+                                                    <span class="progress-value" id="progress-value-id-four">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span>Depo Sirkülasyon Grafiği</span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-five">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 5</p>
+                                                <p><strong>Kiralandığı Firma :</strong> Ülker A.Ş</p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Nokta Depo</p>
+                                                <p><strong>Standartlar :</strong> ISO <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p>    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"5" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p>Nokta Depo, şirketin batı bölgelerine yönelik lojistik operasyonları gerçekleştiren bir depodur. Bu depo, batı illerine hızlı ve verimli bir şekilde ürün tedariki sağlamak için stratejik bir konumda yer alır. Nokta Depo, depo içindeki ürünlerin stok seviyelerini izler, dağıtım rotalarını optimize eder ve müşteri taleplerine uygun olarak sevkiyatları planlar.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id-five">
+                                                    <span class="progress-value" id="progress-value-id-five">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span><strong><u>Depo Sirkülasyon Grafiği</u></strong></span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="warehouse-box-container" id="warehouse-box-container-screen-six">
+                            <i class="fa-solid fa-xmark" id="xmark-off" style="color: #000000;"></i>
+                            <div class="container-box-warehouse">
+                                <div class="warehouse-box-one">
+                                    <div id="warehouse-box-one-one">
+                                        <div id="warehouse-box-one-one-one">
+                                            <div id="warehouse-box-one-one-one-header">
+                                                <p>Depo Hakkında Genel Bilgiler</p>
+                                            </div>
+                                        </div>
+                                        <div id="warehouse-box-one-two">
+                                            <div id="warehouse-box-one-two-one">
+                                                <p><strong>Depo Numarası :</strong> 6</p>
+                                                <p><strong>Kiralandığı Firma :</strong> Koçtaş Yapı A.Ş. </p>
+                                                <p><strong>Depo Durumu :</strong> İyi</p>
+                                            </div>
+                                            <div id="warehouse-box-one-two-two">
+                                                <p><strong>Depo Türü :</strong> Kuru Depo</p>
+                                                <p><strong>Depo Adı :</strong> Temel Depo</p>
+                                                <p><strong>Standartlar :</strong> ISO <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-9001-nedir.html#:~:text=ISO%209001%20Standard%C4%B1%2C%20esas%20olarak,y%C3%B6netim%20sisteminin%20kalitesi%20ile%20ilgilidir.">9001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-14001-nedir.html#:~:text=ISO%2014001%2C%20i%C5%9Fletmelerin%20%C3%A7evreye%20verdikleri,i%C3%A7in%20geli%C5%9Ftirilen%20bir%20y%C3%B6netim%20sistemidir.">14001</a>,
+                                                    <a target="_blank" href="https://belgelendirme.ctr.com.tr/iso-45001.html#:~:text=ISO%2045001%2C%20kurulu%C5%9Flar%C4%B1n%20%C3%BCr%C3%BCn%20ve,ve%20gerekli%20%C3%B6nlemlerin%20al%C4%B1nmas%C4%B1n%C4%B1%20hedeflemektedir.">45001</a></p>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="warehouse-box-two">
+                                    <div class="warehouse-box-two-one">
+                                        <h4>"6" Numaralı Depo Hakkında Detaylı Bilgiler ve Notlar</h4>
+                                        <p>Temel Depo, çevrimiçi satış platformları ve e-ticaret kanalları aracılığıyla yapılan satışların son noktasıdır. Bu depo, çevrimiçi siparişlerin toplanması, paketlenmesi ve sevkiyatının gerçekleştirildiği bir merkezdir. Temel Depo, müşteri memnuniyetini sağlamak için hızlı ve güvenilir bir teslimat süreci sunar ve çevrimiçi satış operasyonlarının kritik bir parçasıdır.</p>
+                                    </div>
+                                    <div class="warehouse-box-two-two">
+                                        <div class="warehouse-box-two-two-one">
+                                            <div class="container">
+                                                <div class="circular-progress" id="circular-progress-id-six">
+                                                    <span class="progress-value" id="progress-value-id-six">0%</span>
+                                                </div>
+                                            </div>
+                                            <span>Depo Doluluk Oranı</span>
+                                        </div>
+                                        <div class="warehouse-box-two-two-two">
+                                            <span>Depo Sirkülasyon Grafiği</span>
+                                            <iframe class="iframe-graph" src="./scss/scss.html" frameborder="0"></iframe>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <div id="bottom-block">.</div>
+        <div id="warehouse-block">.</div>
+    </div>
+    <script src="/homepage/navbarMenu.js"></script>
+    <script src="/homepage/warehouseMenu.js"></script>
+    <script type="module" src="/homepage/homepage.js"></script>
+    <script type="module" src="/homepage/newRecords/newRecords.js"></script>
+    <script type="module" src="/homepage/newRecords/registrationDetail.js"></script>
+    <script type="module" src="/homepage/logistics/logistics.js"></script>
+    <script type="module" src="/homepage/warehuseİnformation.js"></script>
+    <script type="module" src="/homepage/form/form.js"></script>
+    <!-- <script src="/homepage/autoFillForm.js"></script> -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>

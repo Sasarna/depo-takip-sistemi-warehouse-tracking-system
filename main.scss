@@ -1,0 +1,143 @@
+body {
+    display: flex;
+    height: 100vh;
+}
+
+.wrap {
+    margin: auto;
+    width: 100%;
+
+    svg {
+        width: 100%;
+    }
+}
+
+// ----- Line ----- //
+
+.line {
+    animation: line 2.5s ease-in-out infinite alternate both;
+    stroke-dasharray: 350;
+    stroke-dashoffset: 350;
+}
+
+.line--2 {
+    animation-delay: 1.25s;
+}
+
+.line--3 {
+    animation-delay: -0.625s;
+}
+
+.line--4 {
+    animation-delay: -1.875s;
+}
+
+@keyframes line {
+    from {
+        stroke-dashoffset: 0;
+    }
+}
+
+// ----- Float ----- //
+
+.float {
+    animation: float 2.5s ease infinite alternate both;
+}
+
+.float--2 {
+    animation-delay: -1.875s;
+}
+
+.float--3 {
+    animation-delay: 1.25s;
+}
+
+.float--4 {
+    animation-delay: 0.625s;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(-15px);
+    }
+}
+
+// ----- Hover ----- //
+
+.hover {
+    animation: hover 2.5s ease infinite alternate both;
+}
+
+.hover--2 {
+    animation-delay: -1.25s;
+}
+
+@keyframes hover {
+    from {
+        transform: translateY(3px);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+// ----- Shimmy ----- //
+
+.shimmy {
+    animation: shimmy 2.5s ease infinite alternate both;
+}
+
+.shimmy--2 {
+    animation-delay: -1.25s;
+}
+
+@keyframes shimmy {
+    from {
+        transform: translate(10px, 3px);
+    }
+}
+
+// ----- Instruct ----- //
+
+.instruct--1 {
+    animation: instruct--1 2.5s ease-out infinite alternate both;
+    stroke-dasharray: 300;
+    stroke-dashoffset: 300;
+}
+
+@keyframes instruct--1 {
+    from {
+        fill: transparent;
+    }
+
+    to {
+        fill: white;
+        stroke-dashoffset: 0;
+    }
+}
+
+.instruct--2 {
+    animation: instruct--2 2.5s ease-in-out infinite alternate both;
+}
+
+@keyframes instruct--2 {
+
+    0%,
+    33% {
+        opacity: 0;
+    }
+}
+
+// ----- Color ----- //
+
+.color {
+    animation: color 2.5s linear infinite alternate both;
+    fill: #FFF;
+}
+
+@keyframes color {
+    to {
+        fill: #E6E6E6;
+    }
+}

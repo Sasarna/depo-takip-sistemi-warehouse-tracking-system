@@ -1,0 +1,47 @@
+@import url(/reset.css);
+
+#compaines-screen-container-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    height: 100%;
+}
+
+.compaines-screen{
+    width: 45%;
+    height: 100%;
+    margin: 20px auto;
+    padding: 1%;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    border-radius: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: top;
+    gap: 15px;
+}
+
+.compaines-name-boxs {
+    width: 100%;
+    flex: 0 0 calc(33.3333% - 15px);
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3 ease-in-out;
+    padding: 5%;
+    font-weight: bold;
+    /* font-size: 105%; */
+}
+
+.compaines-name-boxs:hover {
+    transform: scale(1.03);
+    transition: 250ms;
+}
+
+.company-title{
+    font-size: 24px;
+    font-weight: 300;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}

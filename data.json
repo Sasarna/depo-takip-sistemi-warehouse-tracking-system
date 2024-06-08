@@ -1,0 +1,28 @@
+[
+    {
+        "product-name": "Ürün A",
+        "product-tour": "Tür 1",
+        "entrytime": "09:00",
+        "warehouse-number": 1,
+        "company-name": "Firma A",
+        "logistics-company": "Lojistik A",
+        "weight": 100,
+        "entry-date": "2024-05-01",
+        "stayduration": "3 gün",
+        "product-status": "Hasarsız",
+        "additional-notes": "Not 1"
+    },
+    {
+        "product-name": "Ürün B",
+        "product-tour": "Tür 2",
+        "entrytime": "10:00",
+        "warehouse-number": 2,
+        "company-name": "Firma B",
+        "logistics-company": "Lojistik B",
+        "weight": 200,
+        "entry-date": "2024-05-02",
+        "stayduration": "5 gün",
+        "product-status": "Kısmen Hasarlı",
+        "additional-notes": "Not 2"
+    }
+]
